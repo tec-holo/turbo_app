@@ -2,9 +2,12 @@
 
 <h1>Messages</h1>
 
-<%= render 'messages/form', message: Message.new %>
-
 <%= turbo_stream_from "messages" %>
+
+<%= turbo_frame_tag "message/form" do %>
+  <%= render 'messages/form', message: Message.new %>
+<% end %>
+
 <%= turbo_frame_tag "messages" do %>
 <div id="messages">
   <% @messages.each do |message| %>
